@@ -49,8 +49,6 @@ public class JacksonResource {
         @NotNull
         public String description;
 
-        public Quark(){};
-
         public Quark(String name, String description) {
             this.name = name;
             this.description = description;

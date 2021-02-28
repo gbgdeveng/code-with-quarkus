@@ -36,7 +36,8 @@ public class BeanValidationDeserializer extends BeanDeserializer {
             StringBuilder msg = new StringBuilder();
             msg.append("JSON object is not valid. Reasons (").append(violations.size()).append("): ");
             for (ConstraintViolation<Object> violation : violations) {
-                msg.append(violation.getMessage()).append(", ");
+                String invalidation = String.format("Field %s %s", violation.getPropertyPath(), violation.getMessage());
+                msg.append(invalidation).append(", ");
             }
             throw new ConstraintViolationException(msg.toString(), violations);
         }
