@@ -1,4 +1,4 @@
-package org.acme.logging.json;
+package infrastructure.services;
 
 import org.jboss.logging.Logger;
 

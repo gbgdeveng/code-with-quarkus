@@ -1,6 +1,12 @@
-package org.acme.resteasyjackson;
+package infrastructure.services;
 
-import javax.ws.rs.*;
+import javax.validation.constraints.NotNull;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -38,11 +44,12 @@ public class JacksonResource {
     }
 
     public static class Quark {
+        @NotNull
         public String name;
+        @NotNull
         public String description;
 
-        public Quark() {
-        }
+        public Quark(){};
 
         public Quark(String name, String description) {
             this.name = name;
