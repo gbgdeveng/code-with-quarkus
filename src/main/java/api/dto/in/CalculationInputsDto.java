@@ -8,6 +8,7 @@ import java.util.List;
 public class CalculationInputsDto {
     @NotNull
     public final String expression;
+    @NotNull
     public final List<Integer> variables;
 
     public CalculationInputsDto(String expression, List<Integer> variables) {
