@@ -28,7 +28,7 @@ public class RequestLoggingFilter implements ContainerRequestFilter {
     HttpServerRequest request;
 
     @Override
-    public void filter(@Context ContainerRequestContext context) throws IOException {
+    public void filter(ContainerRequestContext context) throws IOException {
         final String method = context.getMethod();
         final String path = info.getPath();
         InputStream stream = new BufferedInputStream(context.getEntityStream());
