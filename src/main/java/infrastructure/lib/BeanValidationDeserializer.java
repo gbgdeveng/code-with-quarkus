@@ -16,7 +16,7 @@ import java.util.Set;
 public class BeanValidationDeserializer extends BeanDeserializer {
 
     private final static ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-    private final Validator validator = factory.getValidator();
+    private final  Validator validator = factory.getValidator();
 
     public BeanValidationDeserializer(BeanDeserializerBase src) {
         super(src);
