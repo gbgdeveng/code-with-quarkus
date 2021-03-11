@@ -1,4 +1,4 @@
-package domain;
+package domain.template;
 
 import com.google.auto.value.AutoValue;
 

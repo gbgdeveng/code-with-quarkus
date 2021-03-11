@@ -1,4 +1,4 @@
-package domain;
+package domain.template;
 
 public class MathUtils {
     public static int eval(final String str) {

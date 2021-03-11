@@ -1,6 +1,6 @@
 package api.dto.in;
 
-import domain.CalculationInputs;
+import domain.template.CalculationInputs;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;

@@ -1,6 +1,6 @@
 package api.dto.out;
 
-import domain.CalculationResults;
+import domain.template.CalculationResults;
 
 public class CalculationResultsDto {
     public final String expression;
