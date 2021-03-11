@@ -19,7 +19,7 @@ public class MyObjectMapperCustomizer implements ObjectMapperCustomizer {
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_ABSENT);
         objectMapper.configure(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES, true);
-//        objectMapper.configure(DeserializationFeature.FAIL_ON_MISSING_CREATOR_PROPERTIES, true);
+        objectMapper.configure(DeserializationFeature.FAIL_ON_MISSING_CREATOR_PROPERTIES, true);
 
         SimpleModule validationModule = new SimpleModule();
         validationModule.setDeserializerModifier(new BeanDeserializerModified());

@@ -18,4 +18,34 @@ public class GreetingResourceTest {
              .body(is("Hello RESTEasy"));
     }
 
+    @Test
+    public void coding__() {
+//        {
+//            "gym": false,
+//                "school": true,
+//                "store": false
+//        },
+//        {
+//            "gym": true,
+//                "school": false,
+//                "store": false
+//        },
+//        {
+//            "gym": true,
+//                "school": true,
+//                "store": false
+//        },
+//        {
+//            "gym": false,
+//                "school": true,
+//                "store": false
+//        },
+//        {
+//            "gym": false,
+//                "school": true,
+//                "store": true
+//        }
+// reqs: [gym,  school, store]
+    }
+
 }

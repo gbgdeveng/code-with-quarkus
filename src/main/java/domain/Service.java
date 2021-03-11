@@ -9,11 +9,13 @@ public class Service {
 
     public CalculationResults calculate(CalculationInputs inputs) {
         String expression = inputs.expression();
-        for (Integer value : inputs.variables()) {
-            expression = expression.replaceFirst("x", value.toString());
+        int result = 0;
+        if (!inputs.variables().isEmpty()) {
+            for (Integer value : inputs.variables()) {
+                expression = expression.replaceFirst("x", value.toString());
+            }
+            result = MathUtils.eval(expression);
         }
-
-        int result = MathUtils.eval(expression);
 
         return CalculationResults.create(expression, result);
     }
