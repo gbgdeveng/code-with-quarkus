@@ -10,7 +10,6 @@ import domain.stocks.Candle;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
-import java.io.File;
 import java.io.FileReader;
 import java.io.Reader;
 import java.util.ArrayList;
@@ -28,28 +27,16 @@ public class CsvDataService implements DataService {
         List<CandleDto> reads = new ArrayList<>();
         CsvMapper csvMapper = new CsvMapper();
         CsvSchema schema = CsvSchema.emptySchema().withHeader();
-
-        ObjectReader oReader = csvMapper.reader(CandleDto.class).with(schema);
-        try {
-            File file = new File(DATA_SET_PATH);
-            System.out.println(file.getAbsolutePath());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        ObjectReader oReader = csvMapper.readerFor(CandleDto.class).with(schema);
 
         try (Reader reader = new FileReader(DATA_SET_PATH)) {
-
-            System.out.println();
             MappingIterator<CandleDto> mi = oReader.readValues(reader);
             reads.addAll(mi.readAll());
-
         } catch (Exception e) {
             Logger.getAnonymousLogger().log(Level.INFO, "unable to load file", e);
         }
 
-        System.out.println(reads.get(10).date + reads.get(11).date);
-
-        Logger.getAnonymousLogger().severe("logging from implementationn");
+        Logger.getAnonymousLogger().severe("Returning data from Csv ");
         return reads.stream().map(CandleDto::toDomain).collect(Collectors.toList());
     }
 }
