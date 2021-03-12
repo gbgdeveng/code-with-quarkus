@@ -12,4 +12,8 @@ public abstract class ApiConfig {
     }
 
     public abstract Environment environment();
+
+    public final String getYahooFinanceApiKey() {
+        return "df4533e479msh6dd37460bbf2d4dp1f35ddjsne4231c29bd30";
+    }
 }

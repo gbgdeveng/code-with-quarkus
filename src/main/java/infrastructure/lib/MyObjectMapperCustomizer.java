@@ -3,7 +3,6 @@ package infrastructure.lib;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import io.quarkus.jackson.ObjectMapperCustomizer;
 
@@ -21,8 +20,8 @@ public class MyObjectMapperCustomizer implements ObjectMapperCustomizer {
         objectMapper.configure(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES, true);
         objectMapper.configure(DeserializationFeature.FAIL_ON_MISSING_CREATOR_PROPERTIES, true);
 
-        SimpleModule validationModule = new SimpleModule();
-        validationModule.setDeserializerModifier(new BeanDeserializerModified());
-        objectMapper.registerModule(validationModule);
+//        SimpleModule validationModule = new SimpleModule();
+//        validationModule.setDeserializerModifier(new BeanDeserializerModified());
+//        objectMapper.registerModule(validationModule);
     }
 }

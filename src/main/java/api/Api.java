@@ -1,8 +1,11 @@
 package api;
 
 import api.dto.in.CalculationInputsDto;
+import api.dto.in.stocks.TestInputsDto;
 import api.dto.out.CalculationResultsDto;
-import api.dto.out.stocks.CandleDto;
+import domain.datacollection.DataCollectionService;
+import domain.datacollection.HistoricalIndicators;
+import domain.enums.Symbol;
 import domain.learning.LearningService;
 import domain.template.CalculationInputs;
 import domain.template.CalculationResults;
@@ -10,8 +13,6 @@ import domain.template.Service;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class Api {
@@ -20,6 +21,8 @@ public class Api {
     Service service;
     @Inject
     LearningService learningService;
+    @Inject
+    DataCollectionService dataCollectionService;
 
     public CalculationResultsDto calculate(CalculationInputsDto inputsDto) {
         CalculationInputs inputs = inputsDto.toDomain();
@@ -31,7 +34,7 @@ public class Api {
         return learningService.startTraining();
     }
 
-    public List<CandleDto> readCandles() {
-        return learningService.readCandles().stream().map(CandleDto::fromDomain).collect(Collectors.toList());
+    public HistoricalIndicators readCandles(TestInputsDto dto) {
+        return dataCollectionService.getDailyHistoricalIndicators(Symbol.parse(dto.symbol), dto.range, dto.unit);
     }
 }
