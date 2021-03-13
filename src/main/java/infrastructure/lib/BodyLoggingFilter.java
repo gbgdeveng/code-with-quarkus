@@ -16,7 +16,7 @@ import java.io.InputStream;
 import java.util.Optional;
 import java.util.Set;
 
-// Unused
+// TODO: remove if unused
 @Provider
 public class BodyLoggingFilter implements ContainerRequestFilter {
     private static final Logger logger = LoggerFactory.getLogger(BodyLoggingFilter.class);

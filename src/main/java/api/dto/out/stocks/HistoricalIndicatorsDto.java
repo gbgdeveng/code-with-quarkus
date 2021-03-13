@@ -1,21 +1,21 @@
 package api.dto.out.stocks;
 
 import domain.datacollection.HistoricalIndicators;
-import domain.enums.Symbol;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class HistoricalIndicatorsDto {
-    public final Symbol symbol;
+    public final String symbol;
     public final List<Long> timestamps;
-    public final List<Double> open;
-    public final List<Double> close;
-    public final List<Double> low;
-    public final List<Double> high;
-    public final List<Long> volume;
-    public final List<Double> adjClose;
+    public final List<BigDecimal> open;
+    public final List<BigDecimal> close;
+    public final List<BigDecimal> low;
+    public final List<BigDecimal> high;
+    public final List<BigDecimal> volume;
+    public final List<BigDecimal> adjClose;
 
-    public HistoricalIndicatorsDto(Symbol symbol, List<Long> timestamps, List<Double> open, List<Double> close, List<Double> low, List<Double> high, List<Long> volume, List<Double> adjClose) {
+    public HistoricalIndicatorsDto(String symbol, List<Long> timestamps, List<BigDecimal> open, List<BigDecimal> close, List<BigDecimal> low, List<BigDecimal> high, List<BigDecimal> volume, List<BigDecimal> adjClose) {
         this.symbol = symbol;
         this.timestamps = timestamps;
         this.open = open;
@@ -27,6 +27,6 @@ public class HistoricalIndicatorsDto {
     }
 
     public static HistoricalIndicatorsDto fromDomain(HistoricalIndicators domain) {
-        return new HistoricalIndicatorsDto(domain.symbol(), domain.timestamps(), domain.open(), domain.close(), domain.low(), domain.high(),  domain.volume(), domain.adjClose());
+        return new HistoricalIndicatorsDto(domain.symbol().getSymbol(), domain.timestamps(), domain.open(), domain.close(), domain.low(), domain.high(),  domain.volume(), domain.adjClose());
     }
 }

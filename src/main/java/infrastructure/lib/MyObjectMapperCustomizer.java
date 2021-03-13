@@ -13,7 +13,6 @@ public class MyObjectMapperCustomizer implements ObjectMapperCustomizer {
 
     @Override
     public void customize(ObjectMapper objectMapper) {
-        // To suppress serializing properties with null values
         objectMapper.registerModule(new Jdk8Module());
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_ABSENT);

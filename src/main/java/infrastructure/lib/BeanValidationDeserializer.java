@@ -13,6 +13,7 @@ import javax.validation.ValidatorFactory;
 import java.io.IOException;
 import java.util.Set;
 
+// TODO: remove if unused
 public class BeanValidationDeserializer extends BeanDeserializer {
 
     private final static ValidatorFactory factory = Validation.buildDefaultValidatorFactory();

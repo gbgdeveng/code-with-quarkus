@@ -2,28 +2,34 @@ package infrastructure.rest;
 
 import domain.datacollection.HistoricalIndicators;
 import domain.enums.Symbol;
-import domain.enums.TimeUnit;
-import infrastructure.rest.client.YahooClient;
-import org.eclipse.microprofile.rest.client.inject.RestClient;
+import yahoofinance.Stock;
+import yahoofinance.YahooFinance;
+import yahoofinance.histquotes.Interval;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 
 @ApplicationScoped
 public class RestYahooService {
+    public final YahooFinance yahooClient;
 
-    @Inject
-    @RestClient
-    YahooClient yahooClient;
+    public RestYahooService() {
+        this.yahooClient = new YahooFinance();
+    }
 
-    public HistoricalIndicators getDailyHistoricalIndicators(Symbol symbol, int range, TimeUnit unit) {
-         yahooClient.getHistoricalData();
-//        return yahooClient.getHistoricalData(symbol.getSymbol(),
-//                String.format("%x%s", range, unit.name().toLowerCase()),
-//                "1d")
-//                .toDomain();
+    public HistoricalIndicators getDailyHistoricalIndicators(Symbol symbol, Date date, Interval interval) {
+        Stock stock = new Stock(symbol.getSymbol());
+        Calendar from = Calendar.getInstance();
+        from.setTime(date);
+        try {
+            stock = YahooFinance.get(symbol.getSymbol(), from, interval);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        return HistoricalIndicators.builder().symbol(symbol).build();
+        return HistoricalIndicators.fromStock(stock);
     }
 
 }
