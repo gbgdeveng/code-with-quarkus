@@ -1,10 +1,10 @@
 package api;
 
 import api.dto.in.CalculationInputsDto;
+import api.dto.out.stocks.HistoricalIndicatorsDto;
 import api.dto.in.stocks.TestInputsDto;
 import api.dto.out.CalculationResultsDto;
 import domain.datacollection.DataCollectionService;
-import domain.datacollection.HistoricalIndicators;
 import domain.enums.Symbol;
 import domain.learning.LearningService;
 import domain.template.CalculationInputs;
@@ -34,7 +34,7 @@ public class Api {
         return learningService.startTraining();
     }
 
-    public HistoricalIndicators readCandles(TestInputsDto dto) {
-        return dataCollectionService.getDailyHistoricalIndicators(Symbol.parse(dto.symbol), dto.range, dto.unit);
+    public HistoricalIndicatorsDto readCandles(TestInputsDto dto) {
+        return HistoricalIndicatorsDto.fromDomain(dataCollectionService.getDailyHistoricalIndicators(Symbol.parse(dto.symbol), dto.range, dto.unit));
     }
 }

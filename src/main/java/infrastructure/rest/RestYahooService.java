@@ -1,6 +1,5 @@
 package infrastructure.rest;
 
-import api.dto.in.stocks.ChartsDto;
 import domain.datacollection.HistoricalIndicators;
 import domain.enums.Symbol;
 import domain.enums.TimeUnit;
@@ -18,9 +17,13 @@ public class RestYahooService {
     YahooClient yahooClient;
 
     public HistoricalIndicators getDailyHistoricalIndicators(Symbol symbol, int range, TimeUnit unit) {
-        ChartsDto dto = yahooClient.getHistoricalData(symbol.getSymbol(), range, unit.name().toLowerCase(), 1, TimeUnit.D.name().toLowerCase())
-                          .await()
-                          .indefinitely();
-        return dto.toDomain();
+         yahooClient.getHistoricalData();
+//        return yahooClient.getHistoricalData(symbol.getSymbol(),
+//                String.format("%x%s", range, unit.name().toLowerCase()),
+//                "1d")
+//                .toDomain();
+
+        return HistoricalIndicators.builder().symbol(symbol).build();
     }
+
 }

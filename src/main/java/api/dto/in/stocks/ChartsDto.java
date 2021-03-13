@@ -1,5 +1,6 @@
 package api.dto.in.stocks;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import domain.datacollection.HistoricalIndicators;
 import domain.enums.Symbol;
 
@@ -9,20 +10,25 @@ import java.util.List;
 public class ChartsDto {
     public final ChartDto chart;
 
-    public ChartsDto(ChartDto chart) {
+    public ChartsDto(@JsonProperty("chart") ChartDto chart) {
         this.chart = chart;
     }
 
     public static class ChartDto {
-        List<HistoricalIndicatorsDto> results;
+        List<HistoricalIndicatorsDto> result;
+
+        public ChartDto(@JsonProperty("result") List<HistoricalIndicatorsDto> result) {
+            this.result = result;
+        }
     }
 
     public HistoricalIndicators toDomain() {
-        HistoricalIndicatorsDto indicators = chart.results
+        HistoricalIndicatorsDto indicators = chart.result
                                                   .stream()
                                                   .findFirst()
                                                   .orElseThrow(() -> new NotFoundException("No indicators were returned"));
-
+        QuoteDto quote = indicators.indicators.quote.stream().findFirst()
+                                   .orElseThrow(() -> new NotFoundException("No quote was returned"));
         AdjCloseDto adjClose = indicators.indicators
                                          .adjClose
                                          .stream()
@@ -30,13 +36,14 @@ public class ChartsDto {
                                          .orElseThrow(() -> new NotFoundException("No adjclose was returned"));
 
 
-        return HistoricalIndicators.create(Symbol.parse(indicators.indicators.symbol),
+        System.out.println(indicators.meta.symbol);
+        return HistoricalIndicators.create(Symbol.parse(indicators.meta.symbol),
                                            indicators.timestamp,
-                                           indicators.indicators.quote.open,
-                                           indicators.indicators.quote.close,
-                                           indicators.indicators.quote.low,
-                                           indicators.indicators.quote.high,
-                                           indicators.indicators.quote.volume,
+                                           quote.open,
+                                           quote.close,
+                                           quote.low,
+                                           quote.high,
+                                           quote.volume,
                                            adjClose.adjClose);
     }
 }

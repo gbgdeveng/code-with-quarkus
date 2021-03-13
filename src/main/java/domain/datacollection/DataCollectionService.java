@@ -15,6 +15,6 @@ public class DataCollectionService {
     RestYahooService yahooService;
 
     public HistoricalIndicators getDailyHistoricalIndicators(Symbol symbol, int range, TimeUnit unit) {
-        return yahooService.getDailyHistoricalIndicators(symbol, range, unit);
+         return yahooService.getDailyHistoricalIndicators(symbol, range, unit);
     }
 }

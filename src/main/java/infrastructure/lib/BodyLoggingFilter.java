@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import javax.json.Json;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
-import javax.ws.rs.container.PreMatching;
 import javax.ws.rs.ext.Provider;
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -19,7 +18,6 @@ import java.util.Set;
 
 // Unused
 @Provider
-@PreMatching
 public class BodyLoggingFilter implements ContainerRequestFilter {
     private static final Logger logger = LoggerFactory.getLogger(BodyLoggingFilter.class);
     private static final Set<HttpMethod> BODIED_HTTP = Sets.newHashSet(HttpMethod.POST, HttpMethod.PUT);

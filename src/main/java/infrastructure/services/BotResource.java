@@ -2,7 +2,7 @@ package infrastructure.services;
 
 import api.Api;
 import api.dto.in.stocks.TestInputsDto;
-import domain.datacollection.HistoricalIndicators;
+import api.dto.out.stocks.HistoricalIndicatorsDto;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -26,7 +26,7 @@ public class BotResource {
 
     @POST
     @Path("/candles")
-    public HistoricalIndicators getCandles(@Valid TestInputsDto dto) {
+    public HistoricalIndicatorsDto getCandles(@Valid TestInputsDto dto) {
         return api.readCandles(dto);
     }
 }
